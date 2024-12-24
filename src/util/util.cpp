@@ -66,8 +66,10 @@ std::filesystem::path get_filename(int year, int day, int part) {
   if (!std::filesystem::exists(ret))
     std::cerr << ret << " does not exist\n";
   ret /= std::to_string(day);
-  if (part)
+  if (part) {
     ret += "_";
+    ret += std::to_string(part);
+  }
   ret += ".txt";
   if (!std::filesystem::exists(ret))
     std::cerr << ret << " does not exist\n";
