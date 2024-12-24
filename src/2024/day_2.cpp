@@ -48,7 +48,7 @@ static bool is_safe(const std::string &s) {
 }
 
 void aoc_2024_2() {
-  std::ifstream file{get_data(2024, 2)};
+  std::ifstream file{get_filename(2024, 2)};
   int safe_count = 0;
 
   for (std::string line; std::getline(file, line);) {

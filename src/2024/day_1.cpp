@@ -10,7 +10,7 @@
 
 namespace {
 std::pair<std::vector<int>, std::vector<int>> get_lists() {
-  std::ifstream f{get_data(2024, 1)};
+  std::ifstream f{get_filename(2024, 1)};
 
   const std::regex pattern(R":((\d+)\s+(\d+)):", std::regex::optimize);
   std::vector<int> a, b;

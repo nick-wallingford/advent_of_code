@@ -4,7 +4,7 @@
 #include <regex>
 
 void aoc_2024_3() {
-  std::ifstream file{get_data(2024, 3)};
+  std::ifstream file{get_filename(2024, 3)};
   std::regex pattern{R"((do(?:n't)?\(\))|(mul\((\d+),(\d+)\)))"};
 
   int sum = 0;

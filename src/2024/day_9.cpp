@@ -28,7 +28,7 @@ std::string read_file(const std::filesystem::path &s) {
 }
 
 [[maybe_unused]] void day_09_part_1() {
-  const auto v = read_file(get_data(2024, 9));
+  const auto v = read_file(get_filename(2024, 9));
   int id = 0;
   std::vector<int> disk;
   for (size_t i = 0; i < v.size(); i++) {
@@ -54,7 +54,7 @@ std::string read_file(const std::filesystem::path &s) {
 }
 
 [[maybe_unused]] void day_09_part_2() {
-  const auto v = read_file(get_data(2024, 9));
+  const auto v = read_file(get_filename(2024, 9));
   std::set<file> disk;
   std::vector<std::set<file>::iterator> files;
 

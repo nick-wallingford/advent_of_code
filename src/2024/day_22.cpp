@@ -89,6 +89,6 @@ void run_sim(const std::vector<uint32_t> &inits) {
 } // namespace
 
 void aoc_2024_22() {
-  const std::vector<uint32_t> inits = read_ints(get_data(2024, 22));
+  const std::vector<uint32_t> inits = read_ints(get_filename(2024, 22));
   run_sim(inits);
 }

@@ -124,7 +124,7 @@ mdspan_3<int> read(const std::filesystem::path &f) {
 } // namespace
 
 void aoc_2024_12() {
-  const auto map = read(get_data(2024, 12));
+  const auto map = read(get_filename(2024, 12));
   const auto area_perimeter = map.find_area_perimeter_corners();
   int64_t cost = 0;
   for (const auto &[area, perimeter, corners] : area_perimeter)

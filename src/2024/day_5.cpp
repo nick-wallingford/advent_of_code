@@ -26,7 +26,7 @@ struct pairless {
 };
 
 void aoc_2024_5() {
-  std::ifstream file{get_data(2024, 5)};
+  std::ifstream file{get_filename(2024, 5)};
   std::string line;
   std::unordered_set<std::pair<int, int>> orders;
   while (std::getline(file, line) && !line.empty()) {

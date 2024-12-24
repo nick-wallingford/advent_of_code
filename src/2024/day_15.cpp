@@ -319,7 +319,7 @@ public:
 } // namespace
 
 void aoc_2024_15() {
-  std::ifstream file{get_data(2024, 15)};
+  std::ifstream file{get_filename(2024, 15)};
   map2 m{file};
   for (std::string line; std::getline(file, line);)
     for (const char c : line)

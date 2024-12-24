@@ -93,7 +93,7 @@ public:
 } // namespace
 
 void aoc_2024_16() {
-  a_star p{get_data(2024, 16)};
+  a_star p{get_filename(2024, 16)};
   std::cout << "part 1: " << p.go() << std::endl;
   std::cout << "part 2: " << p.part2() << std::endl;
 }

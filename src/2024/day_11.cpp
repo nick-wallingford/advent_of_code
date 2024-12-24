@@ -106,7 +106,7 @@ int64_t count_stones(const int64_t x, const int8_t depth, visited_set &v) {
 void aoc_2024_11() {
   int64_t c = 0;
   visited_set v;
-  for (int64_t s : read(get_data(2024, 11)))
+  for (int64_t s : read(get_filename(2024, 11)))
     c += count_stones(s, 75, v);
 
   std::cout << c << '\n';

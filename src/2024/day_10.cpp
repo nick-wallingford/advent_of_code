@@ -60,7 +60,7 @@ void dfs(const std::vector<std::string> &map, visited_set &v, uint64_t y, uint64
 }
 
 [[maybe_unused]] void day_10_1() {
-  std::ifstream file{get_data(2024, 10)};
+  std::ifstream file{get_filename(2024, 10)};
   std::vector<std::string> map;
 
   for (std::string line; std::getline(file, line);)
@@ -78,7 +78,7 @@ void dfs(const std::vector<std::string> &map, visited_set &v, uint64_t y, uint64
 }
 
 [[maybe_unused]] void day_10_2() {
-  std::ifstream file{get_data(2024, 10)};
+  std::ifstream file{get_filename(2024, 10)};
   std::vector<std::string> map;
 
   for (std::string line; std::getline(file, line);)

@@ -18,7 +18,7 @@ static bool is_valid(const uint32_t *const v, const uint64_t value, const uint64
 }
 
 void aoc_2024_7() {
-  std::ifstream file{get_data(2024, 7)};
+  std::ifstream file{get_filename(2024, 7)};
   std::vector<uint32_t> v;
   uint64_t sum = 0;
 

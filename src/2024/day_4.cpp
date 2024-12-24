@@ -44,7 +44,7 @@ int search_up(const std::deque<std::string> &d) {
 void day_04_p1() {
   std::deque<std::string> lines;
 
-  std::ifstream file{get_data(2024, 4)};
+  std::ifstream file{get_filename(2024, 4)};
   size_t linelength = 0;
   int count = 0;
   for (;;) {
@@ -78,7 +78,7 @@ void day_04_p1() {
 
 void day_04_p2() {
   std::deque<std::string> lines;
-  std::ifstream file{get_data(2024, 4)};
+  std::ifstream file{get_filename(2024, 4)};
   size_t linelength = 0;
   int count = 0;
 

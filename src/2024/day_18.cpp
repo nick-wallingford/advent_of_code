@@ -31,7 +31,7 @@ void aoc_2024_18() {
   m.set_start({1, 1});
   m.set_end(sz - vec{2, 2});
 
-  FILE *f = fopen(get_data(2024, 18).native().c_str(), "r");
+  FILE *f = fopen(get_filename(2024, 18).native().c_str(), "r");
 
 #if 0
   // part 1

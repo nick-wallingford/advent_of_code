@@ -40,7 +40,7 @@ std::string read_entire_file(const std::filesystem::path &s) {
   return sstr.str();
 }
 
-std::filesystem::path get_data(int year, int day, int part) {
+std::filesystem::path get_filename(int year, int day, int part) {
   static const std::filesystem::path root = []() -> std::filesystem::path {
     passwd *pw = getpwuid(getuid());
     if (!pw) {

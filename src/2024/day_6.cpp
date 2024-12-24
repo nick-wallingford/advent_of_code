@@ -170,6 +170,6 @@ public:
 } // namespace
 
 void aoc_2024_6() {
-  const explorer e{get_data(2024, 6)};
+  const explorer e{get_filename(2024, 6)};
   std::cout << e.part2() << '\n';
 }

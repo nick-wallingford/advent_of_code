@@ -17,7 +17,7 @@ template <> struct std::hash<std::pair<int, int>> {
 };
 
 void aoc_2024_8() {
-  std::ifstream file{get_data(2024, 8)};
+  std::ifstream file{get_filename(2024, 8)};
   std::vector<std::string> map;
   for (std::string line; std::getline(file, line);)
     if (!line.empty())

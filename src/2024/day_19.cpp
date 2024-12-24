@@ -71,7 +71,7 @@ std::vector<std::string> read_patterns(std::ifstream &file) {
 } // namespace
 
 void aoc_2024_19() {
-  std::ifstream file{get_data(2024, 19)};
+  std::ifstream file{get_filename(2024, 19)};
   trie t;
   for (const auto &towel : read_towels(file))
     t.insert(towel.c_str());
