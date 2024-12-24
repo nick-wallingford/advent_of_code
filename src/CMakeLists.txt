@@ -8,7 +8,7 @@ foreach(year RANGE 2015 2024)
 endforeach()
 
 add_executable(advent_of_code ${SOURCES})
-target_include_directories(advent_of_code PRIVATE util)
+target_include_directories(advent_of_code PRIVATE include)
 
 target_compile_options(advent_of_code PRIVATE -Wall -Wextra -Wno-maybe-uninitialized -Wno-dangling-else -Wno-unused-function)
 target_compile_options(advent_of_code PRIVATE -march=native)
