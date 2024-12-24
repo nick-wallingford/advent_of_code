@@ -1,4 +1,13 @@
-add_executable(advent_of_code main.cpp)
+set(SOURCES "main.cpp")
+
+foreach(year RANGE 2015 2024)
+  set(SOURCES ${SOURCES} ${year}/main.cpp)
+  foreach(day RANGE 1 25)
+    set(SOURCES ${SOURCES} ${year}/day_${day}.cpp)
+  endforeach()
+endforeach()
+
+add_executable(advent_of_code ${SOURCES})
 
 target_compile_options(advent_of_code PRIVATE -Wall -Wextra -Wno-maybe-uninitialized -Wno-dangling-else -Wno-unused-function)
 target_compile_options(advent_of_code PRIVATE -march=native)
