@@ -2,6 +2,7 @@
 #define MAZE_H
 
 #include "vec.hpp"
+#include <filesystem>
 #include <unordered_map>
 
 class map {
@@ -11,7 +12,7 @@ protected:
 
 public:
   map(vec sz) : sz{sz} { data.resize(sz.x * sz.y); }
-  map(const char *filename);
+  map(const std::filesystem::path&);
 
   [[nodiscard]] constexpr char operator[](const vec &v) const noexcept { return data[v.y * sz.x + v.x]; }
   [[nodiscard]] constexpr char &operator[](const vec &v) noexcept { return data[v.y * sz.x + v.x]; }
@@ -25,7 +26,7 @@ class maze : public map {
 
 public:
   maze(vec sz) : map{sz} {}
-  maze(const char *filename);
+  maze(const std::filesystem::path&);
 
   constexpr void set_start(const vec v) noexcept { start_point = v; }
   constexpr void set_end(const vec v) noexcept { end_point = v; }

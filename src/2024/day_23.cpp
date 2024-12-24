@@ -1,3 +1,4 @@
+#include "util.hpp"
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/bron_kerbosch_all_cliques.hpp>
 #include <chrono>
@@ -53,7 +54,7 @@ struct clique_visitor {
 void aoc_2024_23() {
   const auto start_time = std::chrono::steady_clock::now();
   Graph g;
-  std::ifstream file{"day_23.txt"};
+  std::ifstream file{get_data(2024, 23)};
 
   auto lines_view = std::views::istream<std::string>(file);
   for (const auto &line : lines_view)

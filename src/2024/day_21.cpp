@@ -199,7 +199,7 @@ template <size_t robots> void run_sim(const std::vector<std::string> &lines) {
 void aoc_2024_21() {
   std::vector<std::string> lines;
   std::string line;
-  for (std::ifstream f{"day_21.txt"}; std::getline(f, line); lines.push_back(std::move(line)))
+  for (std::ifstream f{get_data(2024, 21)}; std::getline(f, line); lines.push_back(std::move(line)))
     ;
   run_sim<2>(lines);
   run_sim<25>(lines);

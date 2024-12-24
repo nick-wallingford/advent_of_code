@@ -1,3 +1,4 @@
+#include "util.hpp"
 #include "maze.hpp"
 #include <iostream>
 
@@ -8,7 +9,7 @@ constexpr int cheat_distance = 20; // part 2
 #endif
 
 void aoc_2024_20() {
-  const maze m{"day_20.txt"};
+  const maze m{get_data(2024, 20)};
   const auto flood_start = m.flood(m.get_start()); // map of vec -> distance from start
   const auto flood_end = m.flood(m.get_end());     // map of vec -> distance from end
   const int64_t max_cheat = flood_start.find(m.get_end())->second - 100;

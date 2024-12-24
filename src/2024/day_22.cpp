@@ -29,7 +29,7 @@ public:
   [[nodiscard]] constexpr uint64_t operator*() const noexcept { return n; }
 };
 
-std::vector<unsigned> read_ints(const char *s) {
+std::vector<unsigned> read_ints(const std::filesystem::path &s) {
   std::vector<unsigned> r;
   uint32_t i;
   for (std::ifstream file{s}; file >> i; r.push_back(i))
@@ -89,6 +89,6 @@ void run_sim(const std::vector<uint32_t> &inits) {
 } // namespace
 
 void aoc_2024_22() {
-  const std::vector<uint32_t> inits = read_ints("day_22.txt");
+  const std::vector<uint32_t> inits = read_ints(get_data(2024, 22));
   run_sim(inits);
 }

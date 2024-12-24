@@ -4,7 +4,7 @@
 #include <fstream>
 #include <queue>
 
-map::map(const char *filename) {
+map::map(const std::filesystem::path &filename) {
   std::ifstream file{filename};
   for (std::string line; std::getline(file, line);) {
     if (!sz.x) {
@@ -25,7 +25,7 @@ std::ostream &map::print(std::ostream &o) const {
   return o;
 }
 
-maze::maze(const char *filename) : map{filename} {
+maze::maze(const std::filesystem::path &filename) : map{filename} {
   if (const auto r = data.find('S'); r != std::string::npos) {
     start_point.x = r % sz.x;
     start_point.y = r / sz.x;
