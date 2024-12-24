@@ -1,3 +1,4 @@
+#include "util.hpp"
 #include <cassert>
 #include <cstring>
 #include <fstream>
@@ -122,9 +123,7 @@ public:
 
   void print() {
     for (int i = 0; i < height; i++) {
-      std::cout << std::string_view{data.data() + i * width,
-                                    data.data() + i * width + width}
-                << std::endl;
+      std::cout << std::string_view{data.data() + i * width, data.data() + i * width + width} << std::endl;
     }
   }
 
@@ -225,8 +224,7 @@ class map2 {
     if (c == '#')
       return;
     assert(c == '.');
-    std::memmove(data.data() + y * width + i, data.data() + y * width + i + 1,
-                 x - i);
+    std::memmove(data.data() + y * width + i, data.data() + y * width + i + 1, x - i);
     --x;
   }
   void moveright() {
@@ -244,8 +242,7 @@ class map2 {
     if (c == '#')
       return;
     assert(c == '.');
-    std::memmove(data.data() + y * width + x + 1, data.data() + y * width + x,
-                 i - x);
+    std::memmove(data.data() + y * width + x + 1, data.data() + y * width + x, i - x);
     ++x;
   }
 
@@ -315,16 +312,14 @@ public:
   }
   void print() {
     for (int i = 0; i < height; i++) {
-      std::cout << std::string_view{data.data() + i * width,
-                                    data.data() + i * width + width}
-                << std::endl;
+      std::cout << std::string_view{data.data() + i * width, data.data() + i * width + width} << std::endl;
     }
   }
 };
 } // namespace
 
 void aoc_2024_15() {
-  std::ifstream file{"day_15.txt"};
+  std::ifstream file{get_data(2024, 15)};
   map2 m{file};
   for (std::string line; std::getline(file, line);)
     for (const char c : line)

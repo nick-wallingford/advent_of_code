@@ -1,3 +1,4 @@
+#include "util.hpp"
 #include <cassert>
 #include <fstream>
 #include <iostream>
@@ -13,9 +14,8 @@ template <typename T> class mdspan_3 {
   int max_id = 0;
 
   void init_region(size_t i, size_t j, int id, int value) {
-    if (i == a || j == b || i == std::numeric_limits<size_t>::max() ||
-        j == std::numeric_limits<size_t>::max() || (*this)(i, j, 1) ||
-        value != (*this)(i, j, 0))
+    if (i == a || j == b || i == std::numeric_limits<size_t>::max() || j == std::numeric_limits<size_t>::max() ||
+        (*this)(i, j, 1) || value != (*this)(i, j, 0))
       return;
     (*this)(i, j, 1) = id;
     init_region(i - 1, j, id, value);
@@ -109,7 +109,7 @@ public:
   }
 };
 
-mdspan_3<int> read(const char *f) {
+mdspan_3<int> read(const std::filesystem::path &f) {
   std::vector<std::string> map;
   std::string s;
   for (std::ifstream file{f}; std::getline(file, s); map.push_back(s))
@@ -124,7 +124,7 @@ mdspan_3<int> read(const char *f) {
 } // namespace
 
 void aoc_2024_12() {
-  const auto map = read("day_12.txt");
+  const auto map = read(get_data(2024, 12));
   const auto area_perimeter = map.find_area_perimeter_corners();
   int64_t cost = 0;
   for (const auto &[area, perimeter, corners] : area_perimeter)

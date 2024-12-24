@@ -1,3 +1,4 @@
+#include "util.hpp"
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -11,7 +12,7 @@ class explorer {
   int size_x, size_y;
 
 public:
-  explorer(const char *f) {
+  explorer(const std::filesystem::path &f) {
     std::ifstream file{f};
     for (std::string line; std::getline(file, line);)
       map.push_back(std::move(line));
@@ -110,13 +111,9 @@ public:
     return true;
   }
 
-  [[nodiscard]] char operator()(size_t i, size_t j) const {
-    return map.at(i).at(j);
-  }
+  [[nodiscard]] char operator()(size_t i, size_t j) const { return map.at(i).at(j); }
 
-  bool operator==(const explorer &o) const {
-    return x == o.x && y == o.y && c == o.c;
-  }
+  bool operator==(const explorer &o) const { return x == o.x && y == o.y && c == o.c; }
 
   static bool loops(explorer e1, explorer e2) {
     while (++e1 && ++e1 && ++e2)
@@ -155,8 +152,7 @@ class explorer_opt {
 
 public:
   explorer_opt(const explorer &e)
-      : width{e.get_width()}, height{e.get_height()}, x{e.get_x()},
-        y{e.get_y()}, dir{e.get_c()} {
+      : width{e.get_width()}, height{e.get_height()}, x{e.get_x()}, y{e.get_y()}, dir{e.get_c()} {
     rows.resize(height);
     for (int i = 0; i < height; i++)
       for (int j = 0; j < width; j++)
@@ -174,6 +170,6 @@ public:
 } // namespace
 
 void aoc_2024_6() {
-  const explorer e{"day_06.txt"};
+  const explorer e{get_data(2024, 6)};
   std::cout << e.part2() << '\n';
 }

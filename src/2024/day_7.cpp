@@ -1,3 +1,4 @@
+#include "util.hpp"
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -8,18 +9,16 @@ static uint64_t concat_integer(uint64_t a, uint32_t b) {
   return a + b;
 }
 
-static bool is_valid(const uint32_t *const v, const uint64_t value,
-                     const uint64_t target, const size_t n) {
+static bool is_valid(const uint32_t *const v, const uint64_t value, const uint64_t target, const size_t n) {
   if (n)
-    return is_valid(v + 1, value * *v, target, n - 1) ||
-           is_valid(v + 1, value + *v, target, n - 1) ||
+    return is_valid(v + 1, value * *v, target, n - 1) || is_valid(v + 1, value + *v, target, n - 1) ||
            is_valid(v + 1, concat_integer(value, *v), target, n - 1);
   else
     return value == target;
 }
 
 void aoc_2024_7() {
-  std::ifstream file{"day_07.txt"};
+  std::ifstream file{get_data(2024, 7)};
   std::vector<uint32_t> v;
   uint64_t sum = 0;
 

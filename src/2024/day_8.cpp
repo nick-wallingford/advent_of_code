@@ -1,3 +1,4 @@
+#include "util.hpp"
 #include <fstream>
 #include <iostream>
 #include <unordered_set>
@@ -16,7 +17,7 @@ template <> struct std::hash<std::pair<int, int>> {
 };
 
 void aoc_2024_8() {
-  std::ifstream file{"day_08.txt"};
+  std::ifstream file{get_data(2024, 8)};
   std::vector<std::string> map;
   for (std::string line; std::getline(file, line);)
     if (!line.empty())
@@ -37,9 +38,7 @@ void aoc_2024_8() {
           if (map[k][l] == station && (k != i || l != j)) {
             ptrdiff_t y_step = k - i;
             ptrdiff_t x_step = l - j;
-            for (ptrdiff_t x = j, y = i;
-                 0 <= x && x < width && 0 <= y && y < height;
-                 x += x_step, y += y_step)
+            for (ptrdiff_t x = j, y = i; 0 <= x && x < width && 0 <= y && y < height; x += x_step, y += y_step)
               antinodes.emplace(y, x);
           }
     }

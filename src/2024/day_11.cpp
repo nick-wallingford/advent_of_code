@@ -1,3 +1,4 @@
+#include "util.hpp"
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -10,8 +11,7 @@ using visited_set = std::unordered_map<visited_value, int64_t>;
 
 template <> struct std::hash<visited_value> {
   size_t operator()(const visited_value &x) const noexcept {
-    __int128 h = (static_cast<uint64_t>(x.first) << 56) +
-                 static_cast<uint64_t>(x.second);
+    __int128 h = (static_cast<uint64_t>(x.first) << 56) + static_cast<uint64_t>(x.second);
     h *= 0xdeadbeefdeadbeefllu;
     h += h >> 64;
     return h;
@@ -19,7 +19,7 @@ template <> struct std::hash<visited_value> {
 };
 
 namespace {
-std::vector<int64_t> read(const char *f) {
+std::vector<int64_t> read(const std::filesystem::path &f) {
   int64_t x = 0;
   std::ifstream file{f};
   std::string line;
@@ -98,8 +98,7 @@ int64_t count_stones(const int64_t x, const int8_t depth, visited_set &v) {
     const int64_t s = pow10(count >> 1);
     r = count_stones(x / s, depth - 1, v) + count_stones(x % s, depth - 1, v);
   }
-  v.emplace(std::piecewise_construct, std::forward_as_tuple(depth, x),
-            std::forward_as_tuple(r));
+  v.emplace(std::piecewise_construct, std::forward_as_tuple(depth, x), std::forward_as_tuple(r));
   return r;
 }
 } // namespace
@@ -107,7 +106,7 @@ int64_t count_stones(const int64_t x, const int8_t depth, visited_set &v) {
 void aoc_2024_11() {
   int64_t c = 0;
   visited_set v;
-  for (int64_t s : read("day_11.txt"))
+  for (int64_t s : read(get_data(2024, 11)))
     c += count_stones(s, 75, v);
 
   std::cout << c << '\n';

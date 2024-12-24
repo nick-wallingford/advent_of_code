@@ -1,19 +1,18 @@
+#include "a_star.hpp"
 #include "maze.hpp"
+#include "util.hpp"
 #include "vec.hpp"
 #include <cassert>
 #include <cstdio>
 #include <iostream>
 #include <queue>
-#include "a_star.hpp"
 
 #if 1
 static constexpr int take_n = 1024;
 static constexpr const vec sz{73, 73};
-static constexpr const char *filename = "day_18.txt";
 #else
 static constexpr int take_n = 12;
 static constexpr const vec sz{9, 9};
-static constexpr const char *filename = "day_18_expl.txt";
 #endif
 
 void aoc_2024_18() {
@@ -32,7 +31,7 @@ void aoc_2024_18() {
   m.set_start({1, 1});
   m.set_end(sz - vec{2, 2});
 
-  FILE *f = fopen(filename, "r");
+  FILE *f = fopen(get_data(2024, 18).native().c_str(), "r");
 
 #if 0
   // part 1
@@ -64,8 +63,7 @@ void aoc_2024_18() {
   }
 #else
   std::vector<vec> blocks;
-  for (vec v; 2 == fscanf(f, "%d,%d\n", &v.x, &v.y);
-       blocks.push_back(v + vec{1, 1}))
+  for (vec v; 2 == fscanf(f, "%d,%d\n", &v.x, &v.y); blocks.push_back(v + vec{1, 1}))
     ;
   fclose(f);
   int l = 0;

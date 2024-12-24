@@ -1,3 +1,4 @@
+#include "util.hpp"
 #include <fstream>
 #include <iostream>
 #include <set>
@@ -10,19 +11,16 @@ struct file {
   int id;
 
   constexpr file() = default;
-  constexpr file(int index, int size, int id)
-      : index{index}, size{size}, id{id} {}
+  constexpr file(int index, int size, int id) : index{index}, size{size}, id{id} {}
   file(const file &) noexcept = default;
   file(file &&) noexcept = default;
   file &operator=(const file &) noexcept = default;
   file &operator=(file &&) noexcept = default;
 
-  constexpr auto operator<=>(const file &o) const noexcept {
-    return index <=> o.index;
-  }
+  constexpr auto operator<=>(const file &o) const noexcept { return index <=> o.index; }
 };
 
-std::string read_file(const char *s) {
+std::string read_file(const std::filesystem::path &s) {
   std::ifstream file{s};
   std::string line;
   std::getline(file, line);
@@ -30,7 +28,7 @@ std::string read_file(const char *s) {
 }
 
 [[maybe_unused]] void day_09_part_1() {
-  const auto v = read_file("day_09.txt");
+  const auto v = read_file(get_data(2024, 9));
   int id = 0;
   std::vector<int> disk;
   for (size_t i = 0; i < v.size(); i++) {
@@ -56,7 +54,7 @@ std::string read_file(const char *s) {
 }
 
 [[maybe_unused]] void day_09_part_2() {
-  const auto v = read_file("day_09.txt");
+  const auto v = read_file(get_data(2024, 9));
   std::set<file> disk;
   std::vector<std::set<file>::iterator> files;
 
@@ -71,10 +69,9 @@ std::string read_file(const char *s) {
   }
 
   const auto find_gap = [&disk](int min_size, int max_idx) {
-    return std::adjacent_find(disk.begin(), ++disk.find({max_idx, 0, 0}),
-                              [min_size](const file &a, const file &b) {
-                                return b.index - (a.index + a.size) >= min_size;
-                              });
+    return std::adjacent_find(disk.begin(), ++disk.find({max_idx, 0, 0}), [min_size](const file &a, const file &b) {
+      return b.index - (a.index + a.size) >= min_size;
+    });
   };
 
   for (; !files.empty(); files.pop_back()) {

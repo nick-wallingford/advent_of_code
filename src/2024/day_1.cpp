@@ -1,3 +1,4 @@
+#include "util.hpp"
 #include <charconv>
 #include <fstream>
 #include <iostream>
@@ -9,7 +10,7 @@
 
 namespace {
 std::pair<std::vector<int>, std::vector<int>> get_lists() {
-  std::ifstream f{"day_01.txt"};
+  std::ifstream f{get_data(2024, 1)};
 
   const std::regex pattern(R":((\d+)\s+(\d+)):", std::regex::optimize);
   std::vector<int> a, b;

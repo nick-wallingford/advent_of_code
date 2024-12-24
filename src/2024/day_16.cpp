@@ -1,7 +1,7 @@
 #include "maze.hpp"
 #include "path.hpp"
+#include "util.hpp"
 #include "vec.hpp"
-
 #include <cassert>
 #include <fstream>
 #include <iostream>
@@ -16,12 +16,11 @@ namespace {
 class a_star {
   const maze m;
   std::priority_queue<path_ptr, std::vector<path_ptr>, path_priority> paths;
-  std::unordered_map<path_ptr, int64_t, std::hash<path_ptr>, path_equals_hash>
-      visited;
+  std::unordered_map<path_ptr, int64_t, std::hash<path_ptr>, path_equals_hash> visited;
   std::vector<path_ptr> best_scores;
 
 public:
-  a_star(const char *f) : m{f} {
+  a_star(const std::filesystem::path &f) : m{f} {
     paths.emplace(path::create(m));
     visited.emplace(paths.top(), 0);
   }
@@ -45,8 +44,7 @@ public:
         continue;
       }
 
-      if (!best_scores.empty() &&
-          p->get_heuristic() >= best_scores.front()->get_score())
+      if (!best_scores.empty() && p->get_heuristic() >= best_scores.front()->get_score())
         break;
 
       for (auto neighbor : {++*p, p->rot<false>(), p->rot<true>()})
@@ -76,9 +74,7 @@ public:
 
   size_t part2() const {
     std::unordered_set<vec> nodes;
-    for (std::unordered_set<path_ptr> paths{best_scores.begin(),
-                                            best_scores.end()};
-         !paths.empty();) {
+    for (std::unordered_set<path_ptr> paths{best_scores.begin(), best_scores.end()}; !paths.empty();) {
       auto it = paths.begin();
       assert(it != paths.end());
       path_ptr p = *it;
@@ -97,7 +93,7 @@ public:
 } // namespace
 
 void aoc_2024_16() {
-  a_star p{"day_16.txt"};
+  a_star p{get_data(2024, 16)};
   std::cout << "part 1: " << p.go() << std::endl;
   std::cout << "part 2: " << p.part2() << std::endl;
 }

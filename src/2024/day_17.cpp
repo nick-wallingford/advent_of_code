@@ -303,7 +303,7 @@ void aoc_2024_17() {
 #else
   namespace bp = boost::parser;
   using bp::literals::operator""_l;
-  const std::string input = read_entire_file("day_17.txt");
+  const std::string input = read_entire_file(get_data(2024, 17));
   constexpr auto parser =
       // clang-format off
     "Register A:"_l >> bp::ulong_ >>

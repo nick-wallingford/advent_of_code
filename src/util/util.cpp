@@ -34,7 +34,7 @@ timer::~timer() {
     std::cout << "time: " << duration_cast<nanoseconds>(stop - start_time) << std::endl;
 }
 
-std::string read_entire_file(const char *s) {
+std::string read_entire_file(const std::filesystem::path &s) {
   std::ostringstream sstr;
   sstr << std::ifstream{s}.rdbuf();
   return sstr.str();

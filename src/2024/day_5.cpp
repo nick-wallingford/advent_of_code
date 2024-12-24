@@ -1,3 +1,4 @@
+#include "util.hpp"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -20,15 +21,12 @@ template <> struct std::hash<std::pair<int, int>> {
 struct pairless {
   const std::unordered_set<std::pair<int, int>> &pairs;
 
-  pairless(const std::unordered_set<std::pair<int, int>> &pairs)
-      : pairs{pairs} {}
-  bool operator()(const int a, const int b) const {
-    return pairs.end() != pairs.find(std::pair<int, int>{a, b});
-  }
+  pairless(const std::unordered_set<std::pair<int, int>> &pairs) : pairs{pairs} {}
+  bool operator()(const int a, const int b) const { return pairs.end() != pairs.find(std::pair<int, int>{a, b}); }
 };
 
 void aoc_2024_5() {
-  std::ifstream file{"day_05.txt"};
+  std::ifstream file{get_data(2024, 5)};
   std::string line;
   std::unordered_set<std::pair<int, int>> orders;
   while (std::getline(file, line) && !line.empty()) {

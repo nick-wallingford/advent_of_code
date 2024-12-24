@@ -1,3 +1,4 @@
+#include "util.hpp"
 #include <cassert>
 #include <fstream>
 #include <iostream>
@@ -11,8 +12,7 @@ using visited_set = std::unordered_set<visited_value>;
 
 template <> struct std::hash<visited_value> {
   size_t operator()(const visited_value &x) const noexcept {
-    __int128 h = static_cast<uint64_t>(std::get<0>(x)) +
-                 (static_cast<uint64_t>(std::get<1>(x)) << 16);
+    __int128 h = static_cast<uint64_t>(std::get<0>(x)) + (static_cast<uint64_t>(std::get<1>(x)) << 16);
     h *= 0xdeadbeefdeadbeefllu;
     h += h >> 64;
     return h;
@@ -20,8 +20,7 @@ template <> struct std::hash<visited_value> {
 };
 
 namespace {
-int64_t dfs(const std::vector<std::string> &map, uint64_t y, uint64_t x,
-            char c) {
+int64_t dfs(const std::vector<std::string> &map, uint64_t y, uint64_t x, char c) {
   if (map[y][x] != c)
     return 0;
   if (c == '9')
@@ -41,8 +40,7 @@ int64_t dfs(const std::vector<std::string> &map, uint64_t y, uint64_t x,
   return r;
 }
 
-void dfs(const std::vector<std::string> &map, visited_set &v, uint64_t y,
-         uint64_t x, char c) {
+void dfs(const std::vector<std::string> &map, visited_set &v, uint64_t y, uint64_t x, char c) {
   if (map[y][x] != c)
     return;
   if (c == '9') {
@@ -62,7 +60,7 @@ void dfs(const std::vector<std::string> &map, visited_set &v, uint64_t y,
 }
 
 [[maybe_unused]] void day_10_1() {
-  std::ifstream file{"day_10.txt"};
+  std::ifstream file{get_data(2024, 10)};
   std::vector<std::string> map;
 
   for (std::string line; std::getline(file, line);)
@@ -80,7 +78,7 @@ void dfs(const std::vector<std::string> &map, visited_set &v, uint64_t y,
 }
 
 [[maybe_unused]] void day_10_2() {
-  std::ifstream file{"day_10.txt"};
+  std::ifstream file{get_data(2024, 10)};
   std::vector<std::string> map;
 
   for (std::string line; std::getline(file, line);)
