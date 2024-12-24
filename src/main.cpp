@@ -12,10 +12,12 @@ void aoc_2023(int);
 void aoc_2024(int);
 
 static void usage(std::string_view argv) {
-  std::cout << "usage: " << argv << "[year] <days>\n"
-            << " for instance, " << argv
-            << " 2024 3 7 2015 9 12\n"
-               "to run problems 3 and 7 from 2024 and 9 and 12 from 2015.\n";
+  std::cout << "usage: " << argv << " [year] <days>\n"
+            << "for instance, `" << argv
+            << " 5 2024 3 7 2015 9 12`\n"
+               "to run problem 5 from the most recent year, "
+               "problems 3 and 7 from 2024, "
+               "problems and 9 and 12 from 2015.\n";
 }
 
 int main(const int argc, const char **argv) {
