@@ -1,6 +1,6 @@
 set(SOURCES main.cpp util/a_star.cpp util/maze.cpp util/util.cpp util/vec.cpp)
 
-foreach(year RANGE 2015 2024)
+foreach(year RANGE 2015 2025)
   set(SOURCES ${SOURCES} ${year}/main.cpp)
   foreach(day RANGE 1 25)
     set(SOURCES ${SOURCES} ${year}/day_${day}.cpp)
