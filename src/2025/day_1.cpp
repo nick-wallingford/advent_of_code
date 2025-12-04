@@ -7,7 +7,7 @@
 
 void aoc_2025_1() {
   std::ifstream ss{get_filename(2025, 1)};
-  int64_t position{100000050};
+  int64_t position{50};
   size_t part_1{0};
   size_t part_2{0};
 
@@ -26,10 +26,13 @@ void aoc_2025_1() {
     if (at_zero)
       rotations = n / 100 + 1;
     else
-      rotations = std::abs(position / 100 - next / 100) - (left && (position % 100 == 0));
+      rotations = std::abs(position / 100 - next / 100 + (next < 0)) - (left && (position % 100 == 0));
     part_2 += rotations;
 
     position = next;
+    position %= 100;
+    position += 100;
+    position %= 100;
   }
 
   std::cout << "part 1: " << part_1 << std::endl;
