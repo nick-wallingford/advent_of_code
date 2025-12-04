@@ -10,6 +10,7 @@ void aoc_2021(int);
 void aoc_2022(int);
 void aoc_2023(int);
 void aoc_2024(int);
+void aoc_2025(int);
 
 static void usage(std::string_view argv) {
   std::cout << "usage: " << argv << " [year] <days>\n"
@@ -24,12 +25,12 @@ int main(const int argc, const char **argv) {
   if (argc <= 1)
     usage(*argv);
 
-  void (*current_year)(int) = &aoc_2024;
+  void (*current_year)(int) = &aoc_2025;
 
   for (int i = 1; i < argc; i++)
     if (const int n = atoi(argv[i]); 1 <= n && n <= 25)
       current_year(n);
-    else if (2015 <= n && n <= 2024)
+    else if (2015 <= n && n <= 2025)
       switch (n) {
       case 2015:
         current_year = &aoc_2015;
@@ -60,6 +61,9 @@ int main(const int argc, const char **argv) {
         break;
       case 2024:
         current_year = &aoc_2024;
+        break;
+      case 2025:
+        current_year = &aoc_2025;
         break;
       }
     else
