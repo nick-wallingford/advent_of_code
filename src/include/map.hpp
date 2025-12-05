@@ -3,7 +3,7 @@
 #include "vec.hpp"
 
 #include <cassert>
-#include <ifstream
+#include <fstream>
 
 class map {
   vec sz{0, 0};
