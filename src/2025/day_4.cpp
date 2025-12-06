@@ -4,21 +4,18 @@
 
 static int64_t mark(std::vector<std::string> &map) {
   int64_t count{};
-  for (size_t i = 1; i < map.size() - 1; i++) {
-    for (size_t j = 1; j < map.front().size() - 1; j++) {
-      if (map[i][j] == '.')
-        continue;
-
-      int neighbors = 0;
-      for (size_t k = i - 1; k <= i + 1; k++)
-        for (size_t l = j - 1; l <= j + 1; l++)
-          neighbors += map[k][l] != '.';
-      if (neighbors < 5) {
-        ++count;
-        map[i][j] = 'x';
+  for (size_t i = 1; i < map.size() - 1; i++)
+    for (size_t j = 1; j < map.front().size() - 1; j++)
+      if (map[i][j] != '.') {
+        int neighbors = 0;
+        for (size_t k = i - 1; k <= i + 1; k++)
+          for (size_t l = j - 1; l <= j + 1; l++)
+            neighbors += map[k][l] != '.';
+        if (neighbors < 5) {
+          ++count;
+          map[i][j] = 'x';
+        }
       }
-    }
-  }
   return count;
 }
 
