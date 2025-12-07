@@ -28,13 +28,13 @@ zoneight234
   std::istringstream input{data};
 #endif
 
-  const std::regex regex{"((?:one)|(?:two)|(?:three)|(?:four)|(?:five)|(?:six)|(?:seven)|(?:eight)|(?:nine)|[0-9])",
-                         std::regex_constants::ECMAScript | std::regex_constants::optimize};
+  const std::regex regex{
+      "((?:one)|(?:two)|(?:three)|(?:four)|(?:five)|(?:six)|(?:seven)|(?:eight)|(?:nine)|[0-9])",
+  };
 
   int64_t part1{}, part2{};
 
   for (std::string line; std::getline(input, line);) {
-    std::cout << line << '\n';
     int64_t digit1{}, digit2{};
     for (char c : line)
       if ('1' <= c && c <= '9') {
